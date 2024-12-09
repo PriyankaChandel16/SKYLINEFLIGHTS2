@@ -1,5 +1,5 @@
 // src/services/flightService.js
-const db = require('../db/db');
+const db = require("../db/db");
 
 // Fetch all available flights
 async function getAllFlights() {
@@ -12,15 +12,45 @@ async function getAllFlights() {
   });
 }
 
+// Fetch all available flights
+async function searchFlights(origin, destination) {
+  return new Promise((resolve, reject) => {
+    const query = `SELECT * FROM flights WHERE `;
+    db.all(query, (err, rows) => {
+      if (err) return reject(err);
+      resolve(rows);
+    });
+  });
+}
+
 // Add a new flight
-async function addFlight(flight_number, origin, destination, departure_time, arrival_time, price) {
+async function addFlight(
+  flight_number,
+  origin,
+  destination,
+  departure_time,
+  arrival_time,
+  price
+) {
   return new Promise((resolve, reject) => {
     const query = `INSERT INTO flights (flight_number, origin, destination, departure_time, arrival_time, price) 
                    VALUES (?, ?, ?, ?, ?, ?)`;
-    db.run(query, [flight_number, origin, destination, departure_time, arrival_time, price], function(err) {
-      if (err) return reject(err);
-      resolve({ id: this.lastID, flight_number, origin, destination, departure_time, arrival_time, price });
-    });
+    db.run(
+      query,
+      [flight_number, origin, destination, departure_time, arrival_time, price],
+      function (err) {
+        if (err) return reject(err);
+        resolve({
+          id: this.lastID,
+          flight_number,
+          origin,
+          destination,
+          departure_time,
+          arrival_time,
+          price,
+        });
+      }
+    );
   });
 }
 
@@ -35,4 +65,4 @@ async function getFlightById(id) {
   });
 }
 
-module.exports = { getAllFlights, addFlight, getFlightById };
+module.exports = { getAllFlights, addFlight, getFlightById, searchFlights };

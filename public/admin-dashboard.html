@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Admin Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <h1>Flight Booking System</h1>
+    </header>
+
+    <div class="container">
+      <!-- Flight Booking Form -->
+      <h2>Create a Flight</h2>
+      <form id="booking-form">
+        <div class="form-group">
+          <label for="country-from">Origin:</label>
+          <select id="country-from" required>
+            <option value="">Select Country</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="India">India</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="country-to">Destination:</label>
+          <select id="country-to" required>
+            <option value="">Select Country</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="India">India</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="travel-date">Date:</label>
+          <input type="date" id="travel-date" required />
+        </div>
+
+        <div class="form-group">
+          <label for="travel-date">Price:</label>
+          <input type="number" id="price" required />
+        </div>
+
+        <button type="button" id="create-flight">Create Flight</button>
+      </form>
+
+      <hr />
+
+      <!-- Available Flights -->
+      <h2>All Flights</h2>
+
+      <hr />
+
+      <!-- Your Bookings -->
+      <h2>All Bookings</h2>
+      <div class="bookings-list">
+        <ul id="bookings-list">
+          <!-- Bookings will be listed here -->
+        </ul>
+      </div>
+
+      <!-- Logout Button -->
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+  </body>
+</html>
