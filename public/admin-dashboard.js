@@ -9,6 +9,7 @@ document.getElementById("create-flight").addEventListener("click", async () => {
   let countryFrom = document.getElementById("country-from").value;
   let countryTo = document.getElementById("country-to").value;
   let travelDate = document.getElementById("travel-date").value;
+  let arrivalDate = document.getElementById("arrival-date").value;
   let price = document.getElementById("price").value;
 
   // Validate input
@@ -19,11 +20,13 @@ document.getElementById("create-flight").addEventListener("click", async () => {
 
   const response = await fetch("http://localhost:8001/flights", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json","Authorization":`Bearer ${localStorage.getItem("authToken")}` },
+
     body: JSON.stringify({
       origin: countryFrom,
       destination: countryTo,
-      date: travelDate,
+      "arrival-date" : arrival-date,
+      "deperature-date" : deperature-date,
       price,
     }),
   });
