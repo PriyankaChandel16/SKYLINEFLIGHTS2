@@ -24,29 +24,14 @@ async function searchFlights(req, res) {
 
 // Route to add a new flight
 async function addFlight(req, res) {
-  const {
-   
-    origin,
-    destination,
-    departure_date,
-    arrival_date,
-    price,
-  } = req.body;
+  const { origin, destination, departure_date, arrival_date, price } = req.body;
 
-  if (
-    
-    !origin ||
-    !destination ||
-    !departure_date ||
-    !arrival_date ||
-    !price
-  ) {
+  if (!origin || !destination || !departure_date || !arrival_date || !price) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
   try {
     const flight = await flightService.addFlight(
-    
       origin,
       destination,
       departure_date,

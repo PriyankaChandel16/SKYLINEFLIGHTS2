@@ -1,11 +1,11 @@
 // db/db.js
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require("sqlite3").verbose();
 
-const db = new sqlite3.Database('./flightBooking.db', (err) => {
+const db = new sqlite3.Database("./flightBookings.db", (err) => {
   if (err) {
-    console.error('Error connecting to database:', err.message);
+    console.error("Error connecting to database:", err.message);
   } else {
-    console.log('Connected to SQLite database.');
+    console.log("Connected to SQLite database.");
   }
 });
 
@@ -29,8 +29,7 @@ const createTables = () => {
       destination TEXT NOT NULL,
       departure_date TEXT NOT NULL,
       arrival_date TEXT NOT NULL,
-      price REAL NOT NULL,
-      
+      price REAL NOT NULL
     )
   `;
 

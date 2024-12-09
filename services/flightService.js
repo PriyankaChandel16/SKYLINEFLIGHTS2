@@ -25,28 +25,26 @@ async function searchFlights(origin, destination) {
 
 // Add a new flight
 async function addFlight(
-  flight_number,
   origin,
   destination,
-  departure_time,
-  arrival_time,
+  departure_date,
+  arrival_date,
   price
 ) {
   return new Promise((resolve, reject) => {
-    const query = `INSERT INTO flights (flight_number, origin, destination, departure_time, arrival_time, price) 
-                   VALUES (?, ?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO flights (origin, destination, departure_date, arrival_date, price) 
+                   VALUES (?, ?, ?, ?, ?)`;
     db.run(
       query,
-      [flight_number, origin, destination, departure_time, arrival_time, price],
+      [origin, destination, departure_date, arrival_date, price],
       function (err) {
         if (err) return reject(err);
         resolve({
           id: this.lastID,
-          flight_number,
           origin,
           destination,
-          departure_time,
-          arrival_time,
+          departure_date,
+          arrival_date,
           price,
         });
       }
